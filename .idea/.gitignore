@@ -1,0 +1,12 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+/jarRepositories.xml
+.idea/modules.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/libraries/
+
+## only keep some files
+!/vcs.xml
+!/gradle.xml
