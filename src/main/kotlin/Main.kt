@@ -1,4 +1,6 @@
 import java.net.URL
+import kotlin.math.max
+import kotlin.math.min
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
 
@@ -33,14 +35,17 @@ object Main {
                 if (y.id >= x.id) continue
                 
                 val lcs = lcs(x.author, y.author)
-                val percentage = lcs.length.toFloat() / listOf(x.author.length, y.author.length).minBy { it }
-                if (percentage > 0.75 && lcs.length > 3) {
+                val percentage = lcs.length.toFloat() / min(x.author.length, y.author.length)
+                val percentageLong = lcs.length.toFloat() / max(x.author.length, y.author.length)
+                if ((percentage > 0.75 || percentageLong > 0.75) && lcs.length > 3) {
                     println(buildString {
                         append(x.id.toString().padStart(4))
                         append(" - ")
                         append(y.id.toString().padStart(4))
                         append(" ")
                         append(percentage.toString().take(3))
+                        append(" ")
+                        append(percentageLong.toString().take(3))
                         append(" '")
                         append(x.author)
                         append("' '")
